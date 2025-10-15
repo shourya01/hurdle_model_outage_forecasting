@@ -1,6 +1,6 @@
 # INFORMS 2025 Data Mining Challenge Submission
 
-This repository contains our third-place solution (RMSE 189 on the hidden forecast window) to the INFORMS 2025 Data Mining Challenge.
+This repository contains our solution to the INFORMS 2025 Data Mining Challenge. It scores a RMSE of 189 on the competition leaderboard.
 
 ### Authors
 - Shourya Bose, Tomas Kaljevic, Yu Zhang  
