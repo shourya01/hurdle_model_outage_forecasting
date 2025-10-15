@@ -3,8 +3,7 @@
 This repository contains our solution to the INFORMS 2025 Data Mining Challenge. It scores a RMSE of 189 on the competition leaderboard.
 
 ### Authors
-- Shourya Bose, Tomas Kaljevic, Yu Zhang  
-  Department of Electrical and Computer Engineering, University of California, Santa Cruz
+Shourya Bose, Tomas Kaljevic, Yu Zhang (Department of Electrical and Computer Engineering, University of California, Santa Cruz)
 
 ### Quick Start
 1. Ensure `train.nc` is located in this directory.
@@ -16,5 +15,6 @@ This repository contains our solution to the INFORMS 2025 Data Mining Challenge.
    ```bash
    python train_outage.py results/weather/weather_forecast.csv
    ```
+4. If you have CUDA GPUs, install GPU-enabled builds `lightgbm` and `torch`, and add the flag `--device cuda` when running either `.py` file.
 
-For a detailed description of the competition dataset (`\train.nc`) schema, see `TRAIN_NC.md`.
+For a detailed description of the competition dataset (`train.nc`) schema, see `TRAIN_NC.md`. For the actual dataset file, please contact the competition organizers.
