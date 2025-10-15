@@ -17,4 +17,4 @@ This repository contains our solution to the INFORMS 2025 Data Mining Challenge.
    python train_outage.py results/weather/weather_forecast.csv
    ```
 
-For a detailed description of the NetCDF schema, see `TRAIN_NC.md`.
+For a detailed description of the competition dataset (`\train.nc`) schema, see `TRAIN_NC.md`.
