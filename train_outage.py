@@ -86,45 +86,45 @@ OutageHistory = Tuple[pd.DatetimeIndex, Dict[str, pd.Series]]
 WeatherHistory = Tuple[pd.DatetimeIndex, List[str], Dict[str, Dict[str, pd.Series]]]
 
 HAZARD_NAME_PREFERENCE = [
-    "gust",
-    "max_10si",
-    "prate",
-    "tp",
-    "crain",
-    "csnow",
-    "snowc",
     "sde",
     "sdwe",
-    "sdwe_1",
-    "ltng",
-    "hail",
-    "hail_1",
-    "hail_2",
-    "cfrzr",
-    "frzr",
-    "cicep",
+    "gust",
     "fricv",
-    "pres",
-    "pres_1",
-    "pres_2",
-    "t2m",
-    "t",
-    "d2m",
-    "sh2",
-    "r",
-    "r2",
-    "u10",
-    "v10",
-    "u",
-    "v",
-    "wz",
-    "wz_1",
-    "cape",
-    "cape_1",
+    "lai",
+    "hail_1",
+    "hail",
     "refc",
-    "refd",
+    "max_10si",
+    "unknown_3",
+    "unknown",
+    "cnwat",
+    "gh_3",
+    "ustm",
+    "snowc",
     "refd_1",
+    "veril",
+    "tcc_1",
+    "refd",
+    "lcc",
+    "gh_5",
+    "tcc",
+    "sdlwrf",
+    "pcdb",
+    "sbt114",
+    "veg",
+    "unknown_5",
+    "sbt124",
+    "mcc",
+    "gh",
+    "pwat",
+    "vstm",
+    "pres",
+    "lsm",
+    "hcc",
+    "gh_4",
     "vis",
+    "orog",
+    "cape",
 ]
 
 HAZARD_KEYWORDS = (
@@ -1015,16 +1015,16 @@ def load_external_weather_forecasts(
         raise FileNotFoundError(f"External weather forecast file not found: {csv_path}")
 
     forecast_df = pd.read_csv(csv_path)
-    required_cols = {"timestamp", "location"}
+    required_cols = {"timestamp", "county"}
     if not required_cols.issubset(forecast_df.columns):
         raise ValueError(
             f"Weather forecast CSV must contain columns {sorted(required_cols)}; found {forecast_df.columns.tolist()}"
         )
 
     forecast_df["timestamp"] = pd.to_datetime(forecast_df["timestamp"], utc=False)
-    forecast_df["location"] = forecast_df["location"].astype(str)
+    forecast_df["county"] = forecast_df["county"].astype(str)
 
-    available_counties = set(forecast_df["location"].unique())
+    available_counties = set(forecast_df["county"].unique())
     missing_counties = set(expected_counties) - available_counties
     if missing_counties:
         raise ValueError(f"Weather forecast CSV missing locations: {sorted(missing_counties)}")
@@ -1037,7 +1037,7 @@ def load_external_weather_forecasts(
 
     truncated_forecast: List[pd.DataFrame] = []
     for county in expected_counties:
-        county_df = forecast_df[forecast_df["location"] == county].sort_values("timestamp")
+        county_df = forecast_df[forecast_df["county"] == county].sort_values("timestamp")
         if county_df.empty:
             raise ValueError(f"Location {county} has no forecast rows")
         if len(county_df) < lookahead:
@@ -1072,8 +1072,8 @@ def load_external_weather_forecasts(
     forecast_frames: Dict[str, pd.DataFrame] = {}
     for hazard in hazard_cols:
         original_col = column_map[hazard]
-        hazard_df = forecast_df[["location", "timestamp", original_col]].copy()
-        hazard_df.rename(columns={"location": "county_id", original_col: "prediction"}, inplace=True)
+        hazard_df = forecast_df[["county", "timestamp", original_col]].copy()
+        hazard_df.rename(columns={"county": "county_id", original_col: "prediction"}, inplace=True)
         hazard_df.sort_values(["county_id", "timestamp"], inplace=True)
         forecast_frames[hazard] = hazard_df
 
@@ -1769,7 +1769,7 @@ def main() -> None:
             ax.plot([0, 1], [0, 1], linestyle="--", color="black", linewidth=1)
             ax.set_xlabel("Predicted probability")
             ax.set_ylabel("Fraction observed")
-            ax.set_title(f"Reliability curve ({exp_name})")
+            ax.set_title(f"Reliability ({lookahead}-Hour Model)")
             ax.legend()
             fig.tight_layout()
             fig.savefig(save_dir / f"{exp_name}_reliability.pdf", bbox_inches="tight")

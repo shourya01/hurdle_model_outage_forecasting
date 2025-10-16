@@ -15,6 +15,8 @@ Shourya Bose, Tomas Kaljevic, Yu Zhang (Department of Electrical and Computer En
    ```bash
    python train_outage.py results/weather/weather_forecast.csv
    ```
-4. If you have CUDA GPUs, install GPU-enabled builds `lightgbm` and `torch`, and add the flag `--device cuda` when running either `.py` file.
+4. If you have CUDA GPUs, install GPU-enabled buildsof  `lightgbm` and `torch`, and add the flag `--device cuda` when running either `.py` file.
 
 For a detailed description of the competition dataset (`train.nc`) schema, see `TRAIN_NC.md`. For the actual dataset file, please contact the competition organizers.
+
+The writeup for our method can be found in `competition_writeup.pdf`.

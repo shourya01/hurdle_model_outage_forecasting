@@ -1,3 +1,8 @@
 train.nc
 results/
 __pycache__/
+.cache/
+*.csv
+*.pdf
+!competition_writeup.pdf
+*.png
