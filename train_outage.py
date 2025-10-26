@@ -1822,6 +1822,20 @@ def main() -> None:
     regressor.booster_.save_model(str(save_dir / f"{exp_name}_stage_b.txt"))
     joblib.dump(calibrator, save_dir / f"{exp_name}_calibrator.joblib")
 
+    calibrator_curve_path = None
+    if calibrator is not None:
+        thresholds = getattr(calibrator, "X_thresholds_", None)
+        values = getattr(calibrator, "y_thresholds_", None)
+        if thresholds is not None and values is not None:
+            iso_df = pd.DataFrame(
+                {
+                    "probability_raw": thresholds,
+                    "probability_calibrated": values,
+                }
+            )
+            calibrator_curve_path = save_dir / f"{exp_name}_calibrator_curve.csv"
+            iso_df.to_csv(calibrator_curve_path, index=False)
+
     metadata = {
         "lookback": lookback,
         "lookahead": lookahead,
@@ -1855,6 +1869,8 @@ def main() -> None:
         print(f"Saved forecast plots to {forecast_plot_path}")
     if weather_forecast_path is not None:
         print(f"Saved weather forecast plots to {weather_forecast_path}")
+    if calibrator_curve_path is not None:
+        print(f"Saved calibrator curve to {calibrator_curve_path}")
 
 
 if __name__ == "__main__":

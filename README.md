@@ -19,4 +19,4 @@ Shourya Bose, Tomas Kaljevic, Yu Zhang (Department of Electrical and Computer En
 
 For a detailed description of the competition dataset (`train.nc`) schema, see `TRAIN_NC.md`. For the actual dataset file, please contact the competition organizers.
 
-The writeup for our method can be found in `competition_writeup.pdf`.
+The report for our method can be found in `competition_report.pdf`, and the presentation in `competition_presentation.pdf`.
