@@ -1,4 +1,5 @@
-train.nc
+michigan.nc
+california.nc
 results/
 __pycache__/
 .cache/
