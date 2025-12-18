@@ -22,4 +22,4 @@ For a detailed description of the competition dataset (`train.nc`) schema, see `
 The report for our method can be found in `competition_report.pdf`, and the presentation in `competition_presentation.pdf`.
 
 ### Acknowledgement
-We would like to thank Lambda Labs (lambda.ai)[lambda.ai] for providing us with the GPU platfor and AI compute credits for this project.
+We would like to thank Lambda Labs [lambda.ai](lambda.ai) for providing us with the GPU platform and AI compute credits for this project.
