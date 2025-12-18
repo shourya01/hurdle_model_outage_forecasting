@@ -20,3 +20,6 @@ Shourya Bose, Tomas Kaljevic, Yu Zhang (Department of Electrical and Computer En
 For a detailed description of the competition dataset (`train.nc`) schema, see `TRAIN_NC.md`. For the actual dataset file, please contact the competition organizers.
 
 The report for our method can be found in `competition_report.pdf`, and the presentation in `competition_presentation.pdf`.
+
+### Acknowledgement
+We would like to thank Lambda Labs (lambda.ai)[lambda.ai] for providing us with the GPU platfor and AI compute credits for this project.
