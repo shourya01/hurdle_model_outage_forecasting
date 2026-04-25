@@ -2,6 +2,8 @@
 
 This repository contains our solution to the INFORMS 2025 Data Mining Challenge. It scores a RMSE of 189 on the competition leaderboard.
 
+*NOTE*: We have added experimental code for n-stage hurdle models in the folder `nstage`. This code is not used in the final submission, and we do not recommend using it in for any practical applications.
+
 ### Authors
 Shourya Bose, Tomas Kaljevic, Yu Zhang (Department of Electrical and Computer Engineering, University of California, Santa Cruz)
 
